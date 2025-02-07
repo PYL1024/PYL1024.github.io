@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>猫娘乐园 ✨</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'HarmonyOS Sans SC', 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* 霓虹标题样式 */
+        .neon-title {
+            text-align: center;
+            padding: 2rem;
+            font-size: 4em;
+            text-transform: uppercase;
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 5px #fff,
+                         0 0 10px #fff,
+                         0 0 20px #ff00de,
+                         0 0 30px #ff00de,
+                         0 0 40px #ff00de;
+        }
+
+        /* 卡片容器 */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 动态卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            /* transform: rotateY(15deg) rotateX(15deg) translateZ(30px); */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.4),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        /* 按钮样式 */
+        .magic-btn {
+            display: inline-block;
+            padding: 1rem 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff00de);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ff00de;
+        }
+
+        .center-text {
+            text-align: center;
+        }
+
+        /* 背景粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* 默认状态 */
+        a {
+        color: rgb(255, 255, 255);
+        text-decoration: none; /* 去掉下划线 */
+        }
+
+        /* 鼠标悬停时 */
+        a:hover {
+        color: rgb(255, 255, 255); /* 保持与默认状态相同的颜色 */
+        }
+
+        /* 已访问状态 */
+        a:visited {
+        color: rgb(255, 255, 255); /* 保持已访问链接颜色与默认相同 */
+        }
+
+        /* 动画定义 */
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 5px #fff,
+                           0 0 10px #fff,
+                           0 0 20px #ff00de,
+                           0 0 30px #ff00de,
+                           0 0 40px #ff00de;
+            }
+            to {
+                text-shadow: 0 0 10px #fff,
+                           0 0 20px #fff,
+                           0 0 30px #ff00de,
+                           0 0 40px #ff00de,
+                           0 0 50px #ff00de;
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .neon-title {
+                font-size: 2.5em;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="neon-title">猫娘乐园 ✨</h1>
+
+    <div class="card-container">
+        <!-- 卡片1 -->
+        <div class="card">
+            <h2 class="neon-title">其实我是奶龙</h2>
+            <br>
+            <h1 class="center-text">体验奶龙的魅力</h1>
+            <br>
+            <button class="magic-btn"><a href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9"><h1>立即体验</h1></a></button>
+        </div>
+
+        <!-- 卡片2 -->
+        <!-- <div class="card">
+            <h2>交互设计</h2>
+            <p>创造直观流畅的用户体验，让科技充满温度。</p>
+            <br>
+            <button class="magic-btn">查看案例</button>
+        </div> -->
+
+        <!-- 卡片3 -->
+        <!-- <div class="card">
+            <h2>未来科技</h2>
+            <p>探索人工智能与量子计算的无限可能。</p>
+            <br><br>
+            <button class="magic-btn">了解更多</button>
+        </div> -->
+    </div>
+
+    <!-- 背景粒子效果 -->
+    <div class="particles">
+        <!-- 这里可以通过JavaScript添加动态粒子效果 -->
+    </div>
+
+    <script>
+        // 简单的悬浮交互增强
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>

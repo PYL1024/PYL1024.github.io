@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepSeek ✨</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(45deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* 霓虹标题样式 */
+        .neon-title {
+            text-align: center;
+            padding: 2rem;
+            font-size: 4em;
+            text-transform: uppercase;
+            animation: neonGlow 1.5s ease-in-out infinite alternate;
+            text-shadow: 0 0 5px #fff,
+                         0 0 10px #fff,
+                         0 0 20px #ff00de,
+                         0 0 30px #ff00de,
+                         0 0 40px #ff00de;
+        }
+
+        /* 卡片容器 */
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 动态卡片 */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: rotateY(15deg) rotateX(15deg) translateZ(30px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.4),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .card:hover::before {
+            left: 100%;
+        }
+
+        /* 按钮样式 */
+        .magic-btn {
+            display: inline-block;
+            padding: 1rem 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #ff00de);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .magic-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px #ff00de;
+        }
+
+        /* 背景粒子效果 */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* 动画定义 */
+        @keyframes neonGlow {
+            from {
+                text-shadow: 0 0 5px #fff,
+                           0 0 10px #fff,
+                           0 0 20px #ff00de,
+                           0 0 30px #ff00de,
+                           0 0 40px #ff00de;
+            }
+            to {
+                text-shadow: 0 0 10px #fff,
+                           0 0 20px #fff,
+                           0 0 30px #ff00de,
+                           0 0 40px #ff00de,
+                           0 0 50px #ff00de;
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .neon-title {
+                font-size: 2.5em;
+            }
+            
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1 class="neon-title">DeepSeek ✨</h1>
+
+    <div class="card-container">
+        <!-- 卡片1 -->
+        <div class="card">
+            <h2>数字艺术</h2>
+            <p>探索虚拟与现实的完美融合，打造令人惊叹的视觉体验。</p>
+            <button class="magic-btn">立即体验</button>
+        </div>
+
+        <!-- 卡片2 -->
+        <div class="card">
+            <h2>交互设计</h2>
+            <p>创造直观流畅的用户体验，让科技充满温度。</p>
+            <button class="magic-btn">查看案例</button>
+        </div>
+
+        <!-- 卡片3 -->
+        <div class="card">
+            <h2>未来科技</h2>
+            <p>探索人工智能与量子计算的无限可能。</p>
+            <button class="magic-btn">了解更多</button>
+        </div>
+    </div>
+
+    <!-- 背景粒子效果 -->
+    <div class="particles">
+        <!-- 这里可以通过JavaScript添加动态粒子效果 -->
+    </div>
+
+    <script>
+        // 简单的悬浮交互增强
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        });
+    </script>
+</body>
+</html>
