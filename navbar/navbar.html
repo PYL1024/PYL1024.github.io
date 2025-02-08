@@ -1,0 +1,76 @@
+<style>
+    /* 导航栏背景透明并固定在顶部 */
+    /* 导航栏背景透明，和页面背景相呼应 */
+    .navbar {
+        background-color: rgba(0, 0, 0, 0.4);
+        /* 背景透明度稍高，和深色背景搭配 */
+        padding: 10px 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        /* 微妙的阴影效果，增强立体感 */
+    }
+
+    /* 导航链接列表 */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    /* 单个导航链接 */
+    .nav-links a {
+        color: #fff;
+        /* 白色文字 */
+        text-decoration: none;
+        /* 移除下划线 */
+        font-family: 'HarmonyOS Sans SC', Arial, sans-serif;
+        font-weight: bold;
+        font-size: 24px;
+        padding: 10px 20px;
+        border-radius: 20px;
+        text-transform: uppercase;
+
+        /* 霓虹灯效果 */
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de;
+        transition: text-shadow 0.6s ease-in-out, background-color 1.2s ease, box-shadow 0.6s ease-in-out;
+    }
+
+    /* 鼠标悬停时的效果 */
+    .nav-links a:hover {
+        /* background: linear-gradient(45deg, #ff6b6b, #ff00de); */
+        /* 渐变效果，配合按钮样式 */
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de;
+        box-shadow: 0 0 20px #ff00de;
+        /* 增强发光效果 */
+    }
+
+    /* 导航栏的logo（如果有的话） */
+    .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #fff;
+        text-transform: uppercase;
+        text-shadow: 0 0 5px #fff, 0 0 10px #ff00de;
+    }
+
+    /* 响应式设计，适应小屏设备 */
+    @media (max-width: 768px) {
+        .nav-links {
+            flex-direction: column;
+            gap: 15px;
+        }
+    }
+</style>
+
+<nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="../">首页</a></li>
+        <li><a href="../homepage">三列</a></li>
+        <li><a href="../posts">博客</a></li>
+    </ul>
+</nav>

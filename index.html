@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <title>猫娘乐园 ✨</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" href="favicon.ico">
     <link rel="manifest" href="/site.webmanifest">
     <style>
         /* 基础样式 */
         * {
-            margin: 0;
+            margin: 60;
             padding: 0;
             box-sizing: border-box;
             font-family: 'HarmonyOS Sans SC', 'Segoe UI', sans-serif;
@@ -21,6 +21,55 @@
             min-height: 100vh;
         }
 
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            /* 滚动条的宽度 */
+            height: 8px;
+            /* 横向滚动条的高度 */
+        }
+
+        /* 滚动条轨道 */
+        ::-webkit-scrollbar-track {
+            background: #2A284F;
+            /* 轻微透明的背景 */
+            border-radius: 5px;
+            /* 圆角 */
+        }
+
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            /* 稍深的透明背景 */
+            border-radius: 5px;
+            /* 圆角 */
+            transition: background 0.3s ease-in-out;
+            /* 滑块颜色变化的动画 */
+        }
+
+        /* 滚动条滑块悬停效果 */
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 0, 0, 0.5);
+            /* 悬停时变得更明显 */
+        }
+
+        /* 横向滚动条 */
+        ::-webkit-scrollbar-horizontal {
+            height: 8px;
+        }
+
+        /* 垂直滚动条 */
+        ::-webkit-scrollbar-vertical {
+            width: 8px;
+        }
+
+
+        /*鼠标悬停效果*/
+        .nav-links a:hover {
+            background-color: #575757;
+            /*悬停时的背景色*/
+        }
+
         /* 霓虹标题样式 */
         .neon-title {
             text-align: center;
@@ -29,10 +78,10 @@
             text-transform: uppercase;
             animation: neonGlow 1.5s ease-in-out infinite alternate;
             text-shadow: 0 0 5px #fff,
-                         0 0 10px #fff,
-                         0 0 20px #ff00de,
-                         0 0 30px #ff00de,
-                         0 0 40px #ff00de;
+                0 0 10px #fff,
+                0 0 20px #ff00de,
+                0 0 30px #ff00de,
+                0 0 40px #ff00de;
         }
 
         /* 卡片容器 */
@@ -61,7 +110,7 @@
 
         .card:hover {
             /* transform: rotateY(15deg) rotateX(15deg) translateZ(30px); */
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
 
         .card::before {
@@ -71,12 +120,10 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,0.4),
-                transparent
-            );
+            background: linear-gradient(90deg,
+                    transparent,
+                    rgba(255, 255, 255, 0.4),
+                    transparent);
             transition: 0.5s;
         }
 
@@ -121,35 +168,39 @@
 
         /* 默认状态 */
         a {
-        color: rgb(255, 255, 255);
-        text-decoration: none; /* 去掉下划线 */
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            /* 去掉下划线 */
         }
 
         /* 鼠标悬停时 */
         a:hover {
-        color: rgb(255, 255, 255); /* 保持与默认状态相同的颜色 */
+            color: rgb(255, 255, 255);
+            /* 保持与默认状态相同的颜色 */
         }
 
         /* 已访问状态 */
         a:visited {
-        color: rgb(255, 255, 255); /* 保持已访问链接颜色与默认相同 */
+            color: rgb(255, 255, 255);
+            /* 保持已访问链接颜色与默认相同 */
         }
 
         /* 动画定义 */
         @keyframes neonGlow {
             from {
                 text-shadow: 0 0 5px #fff,
-                           0 0 10px #fff,
-                           0 0 20px #ff00de,
-                           0 0 30px #ff00de,
-                           0 0 40px #ff00de;
+                    0 0 10px #fff,
+                    0 0 20px #ff00de,
+                    0 0 30px #ff00de,
+                    0 0 40px #ff00de;
             }
+
             to {
                 text-shadow: 0 0 10px #fff,
-                           0 0 20px #fff,
-                           0 0 30px #ff00de,
-                           0 0 40px #ff00de,
-                           0 0 50px #ff00de;
+                    0 0 20px #fff,
+                    0 0 30px #ff00de,
+                    0 0 40px #ff00de,
+                    0 0 50px #ff00de;
             }
         }
 
@@ -158,14 +209,26 @@
             .neon-title {
                 font-size: 2.5em;
             }
-            
+
             .card-container {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
+
 <body>
+    <!--导航栏-->
+    <div id="navbar"></div>
+    <script>
+        fetch('navbar/navbar.html')
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('navbar').innerHTML = html;
+            })
+            .catch(error => console.error('无法加载', error));
+    </script>
+
     <h1 class="neon-title">猫娘乐园 ✨</h1>
 
     <div class="card-container">
@@ -175,7 +238,10 @@
             <br>
             <h1 class="center-text">体验奶龙的魅力</h1>
             <br>
-            <button class="magic-btn"><a href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9"><h1>立即体验</h1></a></button>
+            <button class="magic-btn"><a
+                    href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9">
+                    <h1>立即体验</h1>
+                </a></button>
         </div>
 
         <!-- 卡片2 -->
@@ -195,6 +261,40 @@
         </div> -->
     </div>
 
+    <div class="card-container">
+        <!-- 卡片2 -->
+        <div class="card">
+            <h2 class="neon-title">我不是奶龙</h2>
+            <br>
+            <h1 class="center-text">体验奶龙的魅力</h1>
+            <br>
+            <button class="magic-btn"><a
+                    href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9">
+                    <h1>立即体验</h1>
+                </a></button>
+        </div>
+        <div class="card">
+            <h2 class="neon-title">我不是奶龙</h2>
+            <br>
+            <h1 class="center-text">体验奶龙的魅力</h1>
+            <br>
+            <button class="magic-btn"><a
+                    href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9">
+                    <h1>立即体验</h1>
+                </a></button>
+        </div>
+        <div class="card">
+            <h2 class="neon-title">我不是奶龙</h2>
+            <br>
+            <h1 class="center-text">体验奶龙的魅力</h1>
+            <br>
+            <button class="magic-btn"><a
+                    href="https://www.bilibili.com/video/BV1GJ411x7h7/?share_source=copy_web&vd_source=3ccbe2e6780660af9d51e7f47acdfeb9">
+                    <h1>立即体验</h1>
+                </a></button>
+        </div>
+    </div>
+
     <!-- 背景粒子效果 -->
     <div class="particles">
         <!-- 这里可以通过JavaScript添加动态粒子效果 -->
@@ -207,11 +307,12 @@
                 const rect = card.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top;
-                
+
                 card.style.setProperty('--x', `${x}px`);
                 card.style.setProperty('--y', `${y}px`);
             });
         });
     </script>
 </body>
+
 </html>
